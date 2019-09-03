@@ -1,0 +1,38 @@
+body {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 22px;
+    margin: 30px 0;
+}
+
+.row {
+    margin-bottom: 15px;
+}
+
+.box {
+    width: 250px;
+    height: 200px;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.box + .box {
+    margin-left: 10px;
+}
+
+#box_0 { 
+    background: url('taiwan.png');
+    background-size: cover;
+}
+#box_1 { 
+    background: url('chawan.png');
+    background-size: cover;
+}
+#box_2 { 
+    background: url('napori.png');
+    background-size: cover;
+}

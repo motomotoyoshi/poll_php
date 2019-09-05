@@ -22,6 +22,15 @@ class Poll {
         exit;
     }
 
+    private function _validateAnswer() {
+        // var_dump($_POST);
+        // exit;
+    }
+
+    private function _save() {
+
+    }
+
     private function _connectDB() {
         // try {
             $this->_db = new \PDO(DSN, DB_USERNAME, DB_PASSWORD);

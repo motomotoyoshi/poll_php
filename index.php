@@ -46,6 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $(this).addClass('selected');
                 $('#answer').val($(this).data('id'));
             });
+
+            $('#btn').on('click', function() {
+                if ($('#answer').val() === '') {
+                    alert('Choose One!');
+                } else {
+                    $('form').submit();
+                }
+            });
         });
     </script>
 </body>

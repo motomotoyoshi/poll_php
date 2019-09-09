@@ -7,10 +7,28 @@ class Poll {
 
     public function __construct() {
         $this->_connectDB();
+        $this->_createToken();
+    }
+
+    private function _createToken() {
+        if (!isset($_SESSION['token'])) {
+            $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
+        }
+    }
+
+    private function _validateToken() {
+        if (
+            !isset($_SESSION['token']) ||
+            !isset($_POST['token']) ||
+            $_SESSION['token'] !== $_POST('token')
+        ) {
+            throw new \Exception('invalid token');
+        }
     }
 
     public function post() {
         try {
+            $this->_validateToken();
             $this->_validateAnswer();
             $this->_save();
 

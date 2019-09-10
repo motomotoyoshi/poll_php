@@ -20,7 +20,7 @@ class Poll {
         if (
             !isset($_SESSION['token']) ||
             !isset($_POST['token']) ||
-            $_SESSION['token'] !== $_POST('token')
+            $_SESSION['token'] !== $_POST['token']
         ) {
             throw new \Exception('invalid token');
         }
@@ -60,7 +60,13 @@ class Poll {
     }
 
     private function _save() {
-
+        $sql = "insert into answers
+                    (answer, created)
+                values (:answer, now())";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->bindValue(':answer', (int)$_POST['answer'], \PDO::PARAM_INT);
+        $stmt->execute();
+        exit;
     }
 
     private function _connectDB() {

@@ -66,15 +66,15 @@ class Poll {
         $stmt = $this->_db->prepare($sql);
         $stmt->bindValue(':answer', (int)$_POST['answer'], \PDO::PARAM_INT);
         $stmt->execute();
-        exit;
+        // exit;
     }
 
     private function _connectDB() {
-        // try {
+        try {
             $this->_db = new \PDO(DSN, DB_USERNAME, DB_PASSWORD);
             $this->_db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        // } catch (\PDOException $e) {
-            // throw new \Exception('Failed to connect DB');
-        // }
+        } catch (\PDOException $e) { 
+            throw new \Exception('Failed to connect DB');
+        }
     }
 }

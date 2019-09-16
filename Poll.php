@@ -41,6 +41,17 @@ class Poll {
         exit;
     }
 
+    public function getResults() {
+        $data = array_fill(0, 3, 0);
+
+        $sql = "select answer, count(id) as c from answers group by answer";
+        foreach ($this->_db->query($sql) as $row) {
+            $data[$row['answer']] = (int)$row['c'];
+        }
+
+        return $data;
+    }
+
     public function getError() {
         $err = null;
         if (isset($_SESSION['err'])) {
